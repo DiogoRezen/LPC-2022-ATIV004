@@ -5,6 +5,7 @@ BLACK = (0, 0, 0)
 
 
 class Ball(pygame.sprite.Sprite):
+    
     # This class represents a ball. It derives from the "Sprite" class in Pygame.
 
     def __init__(self, color, width, height):

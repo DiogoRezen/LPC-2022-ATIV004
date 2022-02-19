@@ -1,0 +1,17 @@
+-criação de variaveis para controle do tamanho do paddle:
+
+#paddle = Paddle(LIGHTBLUE, 100, 10)
+x_size_paddle = 50
+y_size_paddle = 10
+paddle = Paddle(LIGHTBLUE, x_size_paddle, y_size_paddle)
+paddle.rect.x = 350
+paddle.rect.y = HEIGHT - 50
+
+-reducao do tamanho do paddle como teste de dificuldade.
+-criação de zonas laterais da mesma cor do paddle:
+
+    # Vertical boards effect
+    pygame.draw.line(screen, LIGHTBLUE, [0,paddle.rect.y - 0.5 * x_size_paddle],[0,paddle.rect.y + 0.5 * x_size_paddle], 4 * dx)
+    pygame.draw.line(screen, LIGHTBLUE, [WIDTH,paddle.rect.y - 0.5 * x_size_paddle],[WIDTH,paddle.rect.y + 0.5 * x_size_paddle], 4 * dx)
+
+

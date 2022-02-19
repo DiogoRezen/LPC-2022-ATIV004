@@ -1,0 +1,58 @@
+-modificação da geracao aleatoria da velocidade para corrigir o erro de reflexao da bola no paddle
+retirando a possibilidade de a bola ficar com velocidade apenas no eixo x
+
+       vx = randint(4,8)
+        vy = 0
+        while vy == 0:
+            vy = randint(-8,8)
+        
+        self.velocity = [vx,vy]#[randint(4,8),randint(-8,8)]
+        
+        # Fetch the rectangle object that has the dimensions of the image.
+        self.rect = self.image.get_rect()
+        
+    def update(self):
+        self.rect.x += self.velocity[0]
+        self.rect.y += self.velocity[1]
+          
+    def bounce(self):
+        self.velocity[0] = -self.velocity[0]
+        vy = 0
+        while vy == 0:
+            vy = randint(-8,8)
+        self.velocity[1] = vy
+
+-retirada do erro da bola ao tocar nas paredes, ficar pesa nelas, fazendo com que a bola ao tocar
+na parede, seja colocada na posição imediatamente antes do toque, com a velocidade em x ou y trocada. Atualização 
+de quando a bola tocar o fundo, seja recolocada no centro da tela, e gasto de uma vida
+
+    #Check if the ball is bouncing against any of the 4 walls:
+    if ball.rect.x >= WIDTH - 2 * dx:
+        ball.velocity[0] = -ball.velocity[0]
+        ball.rect.x = WIDTH - 2 * dx
+        wall_sound.play()
+    if ball.rect.x <= 2 * dx:
+        ball.velocity[0] = -ball.velocity[0]
+        ball.rect.x = 2 * dx
+        wall_sound.play()
+    if ball.rect.y > HEIGHT - 2 * dx:
+        ball.velocity[1] = ball.velocity[1]
+        ball.rect.x = WIDTH // 2 - 5
+        ball.rect.y = HEIGHT // 2 - 5        
+        wall_sound.play()
+        lives -= 1
+        if lives == 0:
+            #Display Game Over Message for 3 seconds
+            font = pygame.font.Font('DSEG14Classic-Bold.ttf', 44)
+            text = font.render("GAME OVER", 1, WHITE)
+            screen.blit(text, (WIDTH/2 - 150,HEIGHT/2 + 100))
+            pygame.display.flip()
+            pygame.time.wait(2000)
+ 
+            #Stop the Game
+            carryOn=False
+ 
+    if ball.rect.y < y_inf_lim:
+        ball.rect.y = y_inf_lim
+        ball.velocity[1] = -ball.velocity[1]
+        wall_sound.play()

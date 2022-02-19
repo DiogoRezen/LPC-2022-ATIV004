@@ -1,0 +1,92 @@
+-teste na linha "self.velocity = [randint(4,8),1]", da classe ball, para parar de rebater a bola apenas na horizontal
+-teste na funcao, da classe ball:
+    def bounce(self):
+        self.velocity[0] = -self.velocity[0]
+        self.velocity[1] = randint(2,8)
+para retirar a situacao da bola se movimentar só na horizontal
+
+-modificacao na classe Paddle para janelar corretamente até onde o paddle pode ir:
+	        def moveRight(self, pixels, w, x_size_paddle):	
+			self.rect.x += pixels
+		        #Check that you are not going too far (off the screen)
+		        if self.rect.x > w - x_size_paddle:
+		          self.rect.x = w - x_size_paddle
+onde x_size_paddle é o tamanho do paddle em x
+
+-criação de variaveis para armazenar o tamanho do paddle
+-criacao de 8 linhas de 14 bricks, conforme a versao classica de breakout, igualmente espacados conforme o tamanho do screen
+
+#Create the Bricks 
+all_bricks = pygame.sprite.Group()
+n_bricks = 14
+dx = 10
+brick_width = (WIDTH - (n_bricks + 1) * dx) / n_bricks
+
+start_line_bricks = 150
+y_inf_lim = 60
+brick_height = 20
+
+dy = 5
+
+for i in range(14):
+    brick = Brick(RED,brick_width,20)
+    brick.rect.x = (i + 1) * dx + i * brick_width
+    brick.rect.y = start_line_bricks + 1 * dy + 0 * brick_height
+    all_sprites_list.add(brick)
+    all_bricks.add(brick)
+for i in range(14):
+    brick = Brick(RED,brick_width,20)
+    brick.rect.x = (i + 1) * dx + i * brick_width
+    brick.rect.y = start_line_bricks + 2 * dy + 1 * brick_height
+    all_sprites_list.add(brick)
+    all_bricks.add(brick)
+for i in range(14):
+    brick = Brick(ORANGE,brick_width,20)
+    brick.rect.x = (i + 1) * dx + i * brick_width
+    brick.rect.y = start_line_bricks + 3 * dy + 2 * brick_height
+    all_sprites_list.add(brick)
+    all_bricks.add(brick)
+for i in range(14):
+    brick = Brick(ORANGE,brick_width,20)
+    brick.rect.x = (i + 1) * dx + i * brick_width
+    brick.rect.y = start_line_bricks + 4 * dy + 3 * brick_height
+    all_sprites_list.add(brick)
+    all_bricks.add(brick)
+for i in range(14):
+    brick = Brick(GREEN,brick_width,20)
+    brick.rect.x = (i + 1) * dx + i * brick_width
+    brick.rect.y = start_line_bricks + 5 * dy + 4 * brick_height
+    all_sprites_list.add(brick)
+    all_bricks.add(brick)      
+for i in range(14):
+    brick = Brick(GREEN,brick_width,20)
+    brick.rect.x = (i + 1) * dx + i * brick_width
+    brick.rect.y = start_line_bricks + 6 * dy + 5 * brick_height
+    all_sprites_list.add(brick)
+    all_bricks.add(brick)
+for i in range(14):
+    brick = Brick(YELLOW,brick_width,20)
+    brick.rect.x = (i + 1) * dx + i * brick_width
+    brick.rect.y = start_line_bricks + 7 * dy + 6 * brick_height
+    all_sprites_list.add(brick)
+    all_bricks.add(brick)
+for i in range(14):
+    brick = Brick(YELLOW,brick_width,20)
+    brick.rect.x = (i + 1) * dx + i * brick_width
+    brick.rect.y = start_line_bricks + 8 * dy + 7 * brick_height
+    all_sprites_list.add(brick)
+    all_bricks.add(brick) 
+
+-aumento da velocidade da ball, e acrescimno da variavel WIDTH e x_zise_paddle, para melhora na correta 
+limitação dos limites de onde o paddle pode ir
+
+    #Moving the paddle when the use uses the arrow keys
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_LEFT]:
+        paddle.moveLeft(10,WIDTH,x_size_paddle)
+    if keys[pygame.K_RIGHT]:
+        paddle.moveRight(10,WIDTH,x_size_paddle)
+
+-modificacao e correto posicionamento das mensagens de game over e level complete
+
+-

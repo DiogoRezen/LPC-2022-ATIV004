@@ -89,13 +89,13 @@ class Paddle(pygame.sprite.Sprite):
         # Fetch the rectangle object that has the dimensions of the image.
         self.rect = self.image.get_rect()
 
-    def moveleft(self, pixels):
+    def move_left(self, pixels):
         self.rect.x -= pixels
         # Check that you are not going too far (off the screen)
         if self.rect.x < 0:
             self.rect.x = 0
 
-    def moveright(self, pixels, w):
+    def move_right(self, pixels, w):
         self.rect.x += pixels
         # Check that you are not going too far (off the screen)
         if self.rect.x > w - x_size_paddle:
@@ -234,9 +234,9 @@ while carryOn:
     speed_paddle = 15
     keys = pygame.key.get_pressed()
     if keys[pygame.K_LEFT]:
-        paddle.moveleft(speed_paddle)
+        paddle.move_left(speed_paddle)
     if keys[pygame.K_RIGHT]:
-        paddle.moveright(speed_paddle, WIDTH)
+        paddle.move_right(speed_paddle, WIDTH)
     # --- Game logic should go here
     all_sprites_list.update()
 
